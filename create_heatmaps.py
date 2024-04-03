@@ -146,12 +146,12 @@ def main(opt):
                 # save .npy heatmap as float 32
                 heatmap = heatmap.astype(np.float32)
                 heatmap_raw_name = os.path.splitext(heatmap_name)[0] + ".npy"
-                np.save(fr"{new_heatmap_dir}\{heatmap_raw_name}",heatmap)
+                np.save(os.path.join(new_heatmap_dir, heatmap_raw_name),heatmap)
 
                 # normalize the heatmap to range between 0 and 255 convert to 8-bit unsigned integer
                 # save heatmap to the corresponding path
                 heatmap_img = (heatmap* 255).astype(np.uint8)
-                if not cv2.imwrite(fr"{new_heatmap_image_dir}\{heatmap_name}", heatmap_img):
+                if not cv2.imwrite(os.path.join(new_heatmap_image_dir, heatmap_name), heatmap_img):
                     sys.exit(f"error saving heatmap {heatmap_name}")
             
 
